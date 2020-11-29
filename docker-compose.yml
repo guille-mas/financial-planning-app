@@ -1,0 +1,25 @@
+version: '3'
+services:
+  financial-planning-app:
+    image: guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-development
+    container_name: ${PROJECT_NAME}
+    volumes:
+      - ./${PROJECT_NAME}:/home/node/app
+    networks:
+      net: {}
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+#    environment:
+#      DEBUG: "gatsby:query-watcher"
+    env_file:
+    - .env
+    - .secrets
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.4.0.0/16

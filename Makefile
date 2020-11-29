@@ -13,17 +13,15 @@ run:
 		docker-compose run --rm ${PROJECT_NAME} sh -c "$$command"
 
 build:
-	docker build -f ./Dockerfile -t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION} \
+	docker build -f ./docker/Dockerfile -t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION} \
 		-t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-production \
-		--target ${PROJECT_NAME}-production \
+		--target prod \
 		--build-arg PORT=${PORT} \
-		--build-arg GOOGLE_MAPS_STATIC_API_KEY=${GOOGLE_MAPS_STATIC_API_KEY} \
-		--build-arg GOOGLE_ANALYTICS_TRACKING_ID=${GOOGLE_ANALYTICS_TRACKING_ID} ./${PROJECT_NAME}
-	docker build -f ./Dockerfile -t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-development \
-		--target ${PROJECT_NAME}-development \
+		./${PROJECT_NAME}
+	docker build -f ./docker/Dockerfile -t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-development \
+		--target dev \
 		--build-arg PORT=${PORT} \
-		--build-arg GOOGLE_MAPS_STATIC_API_KEY=${GOOGLE_MAPS_STATIC_API_KEY} \
-		--build-arg GOOGLE_ANALYTICS_TRACKING_ID=${GOOGLE_ANALYTICS_TRACKING_ID} ./${PROJECT_NAME}
+		./${PROJECT_NAME}
 
 clean:
 	docker-compose down --rmi all
