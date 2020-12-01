@@ -11,7 +11,6 @@ stop:
 run:
 	@read -p "Write a command to run inside your docker environment: " command; \
 		docker-compose run --rm ${PROJECT_NAME} \
-			--volume=${PWD}/${PROJECT_NAME}:/home/node/app
 			sh -c "$$command"
 
 build:
