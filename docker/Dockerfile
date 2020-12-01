@@ -8,10 +8,10 @@ USER node
 COPY --chown=node:node ./ /home/node/app
 WORKDIR /home/node/app
 RUN npm install --only=prod
-
-CMD ["sh", "-c", "ng build"]
+CMD ng build
 EXPOSE $PORT 9229
 
 FROM prod as dev
 ENV NODE_ENV=development
 RUN npm install --only=dev
+CMD ng serve --host 0.0.0.0

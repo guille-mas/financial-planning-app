@@ -32,3 +32,7 @@ clean:
 
 bash:
 	docker-compose exec ${PROJECT_NAME} bash
+
+deploy:
+	cd ${PROJECT_NAME}
+	ng deploy

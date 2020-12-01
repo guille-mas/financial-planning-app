@@ -9,12 +9,10 @@ services:
       net: {}
     ports:
       - ${PORT}:${PORT}
-      - 9229:9229
-      - 9005:9005
+      - 9229:9229 # debug port
     env_file:
     - .env
     - .secrets
-    command: sh -c "ng serve"
 
 networks:
   net:
