@@ -47,10 +47,13 @@ bash:
 
 # deploy to firebase (not working)
 deploy:
-	cd ${PROJECT_NAME}
-	ng deploy
+	(cd ${PROJECT_NAME} && ng deploy)
 
 # push docker image
 push:
 	docker login -u guillermomaschwitz
 	docker push guillermomaschwitz/${PROJECT_NAME}
+
+# production build
+ng-build:
+	docker-compose run --rm ${PROJECT_NAME} ng build --prod --aot=true --buildOptimizer
