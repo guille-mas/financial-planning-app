@@ -1,4 +1,4 @@
-include .env .secrets
+include .env
 # speed up builds and improve build UI by enabling Docker Buildkit
 export DOCKER_BUILDKIT=1
 
@@ -10,7 +10,9 @@ stop:
 
 run:
 	@read -p "Write a command to run inside your docker environment: " command; \
-		docker-compose run --rm ${PROJECT_NAME} sh -c "$$command"
+		docker-compose run --rm ${PROJECT_NAME} \
+			--volume=${PWD}/${PROJECT_NAME}:/home/node/app
+			sh -c "$$command"
 
 build:
 	docker build -f ./docker/Dockerfile -t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION} \
@@ -24,6 +26,10 @@ build:
 		--build-arg PORT=${PORT} \
 		--build-arg PROJECT_NAME=${PROJECT_NAME} \
 		./${PROJECT_NAME}
+
+setup:
+	# install npm libraries locally from a containerized environment
+	docker-compose run --rm ${PROJECT_NAME} npm i
 
 clean:
 	docker-compose down --rmi all

@@ -2,7 +2,7 @@ version: '3'
 services:
   financial-planning-app:
     image: guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-development
-    container_name: ${PROJECT_NAME}
+    container_name: angular
     volumes:
       - ./${PROJECT_NAME}:/home/node/app
     networks:
@@ -12,7 +12,6 @@ services:
       - 9229:9229 # debug port
     env_file:
     - .env
-    - .secrets
 
 networks:
   net:
