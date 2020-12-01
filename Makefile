@@ -17,10 +17,12 @@ build:
 		-t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-production \
 		--target prod \
 		--build-arg PORT=${PORT} \
+		--build-arg PROJECT_NAME=${PROJECT_NAME} \
 		./${PROJECT_NAME}
 	docker build -f ./docker/Dockerfile -t guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-development \
 		--target dev \
 		--build-arg PORT=${PORT} \
+		--build-arg PROJECT_NAME=${PROJECT_NAME} \
 		./${PROJECT_NAME}
 
 clean:
@@ -28,3 +30,5 @@ clean:
 	docker image rm -f guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}
 	docker image rm -f guillermomaschwitz/${PROJECT_NAME}:${PROJECT_VERSION}-production
 
+bash:
+	docker-compose exec ${PROJECT_NAME} bash

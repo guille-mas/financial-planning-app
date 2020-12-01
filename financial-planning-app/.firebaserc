@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "financial-planning-app": {
+      "hosting": {
+        "financial-planning-app": [
+          "financial-planning-app"
+        ]
+      }
+    }
+  }
+}

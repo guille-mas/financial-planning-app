@@ -6,6 +6,7 @@ This file will hold any high level information you might need to start using the
 ## Getting started
 
 - Install Docker and docker-compose
+- copy .secrets-reference to .secrets and fill the empty variables
 - Run `make build`
 - Run `make start`
 

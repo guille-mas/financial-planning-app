@@ -10,11 +10,11 @@ services:
     ports:
       - ${PORT}:${PORT}
       - 9229:9229
-#    environment:
-#      DEBUG: "gatsby:query-watcher"
+      - 9005:9005
     env_file:
     - .env
     - .secrets
+    command: sh -c "ng serve"
 
 networks:
   net:
